@@ -1,0 +1,15 @@
+version: '2'
+services:
+  api:
+    build:
+      context: ./
+      dockerfile: ./docker/Dockerfile
+    # cap_add: [ 'NET_ADMIN', 'NET_RAW' ]
+    ports:
+      - "3000:3000"
+    extra_hosts:
+      - "outside:192.168.0.45"
+    environment:
+      MONGODB: mongodb://192.168.0.45:27017/shop
+    volumes:
+      - ./:/app
